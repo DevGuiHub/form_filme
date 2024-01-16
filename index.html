@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    
+    <!-- Meta tags Obrigatórias -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+   
+
+    <title>Formulário Filme</title>
+
+    <link href="imagem/icone.png" rel="icon">
+    <style>
+      body {
+    background-image: url('imagem/fundo.jpg');
+    background-position: center;
+}
+        .container{
+            color: white;
+            width:50%;
+            margin-bottom:60px;
+            margin-top: 60px;
+            padding: 30px;
+            border-radius: 10px;
+            background: rgba(11, 7, 7, 0.37);
+            border-radius: 16px;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(8.4px);
+            -webkit-backdrop-filter: blur(8.4px);
+        }
+
+        
+
+
+
+    </style>
+
+<script>
+  function confirmarCadastro(){
+    // testando caixa de texto
+    if(document.getElementById("nome").value =="" ){
+      
+      alert("Digite seu nome!");
+      return false;
+     }
+
+
+     //testando opção de checkbox 
+     var check, qteCheck, i, qteSelecionado=0;
+     check = document.getElementsByName("genero");
+     qteCheck=check.length;
+     for(i=0;i<qteCheck; i++){
+       if(check[i].checked)  
+        qteSelecionado++;  
+    }
+
+    if (qteSelecionado==0){
+      alert("Escolha pelo menos um genêro!");
+      return false;
+    }
+
+      
+    // testando opção de radio 
+    if(document.getElementById("canal1").checked==false &&
+       document.getElementById("canal2").checked==false &&
+       document.getElementById("canal3").checked==false &&
+       document.getElementById("canal4").checked==false &&
+       document.getElementById("canal5").checked==false) {
+       alert("Escolha um canal de streaming!");
+       return false;
+     }
+
+    
+    // testando opção select 				
+    
+     var combo;
+     combo=document.getElementById("estilo")	;
+     if(combo.selectedIndex==0){
+       alert("Indique qual desses estilos de filme você prefere!");
+      return false;
+    }
+    
+    
+    // testando opção textarea						
+    if(document.getElementById("opiniao").value=="")
+      {
+      alert("Opinião obrigatória!");
+      return false;
+      }
+    
+
+
+
+  /*Pegando o NOME digitado: */
+
+  var n;
+        n=document.getElementById("nome").value;
+        
+
+
+        /*pegando as  generos selecionadas */
+    var check, qteCheck,i, l="";
+        check=document.getElementsByName("genero");
+        qteCheck=check.length;
+        for(i=0;i<qteCheck;i++){
+           if(check[i].checked)
+           	  l=l+ " "+ check[i].value;
+
+        }
+
+        /*pegando o canal selecionado */
+
+
+     var c;
+      if(document.getElementById("canal1").checked){
+    	  c=document.getElementById("canal1").value;
+	  }
+      if(document.getElementById("canal2").checked){
+    	  c=document.getElementById("canal2").value;
+	  }
+      if(document.getElementById("canal3").checked){
+    	  c=document.getElementById("canal3").value;
+	  }
+      if(document.getElementById("canal4").checked){
+    	  c=document.getElementById("canal4").value;
+	  }
+      if(document.getElementById("canal5").checked){
+    	  c=document.getElementById("canal5").value;
+	  }
+
+    
+ 
+     
+     /*pegando a cidade selecionada */
+        var e, indiceEstiloSelecionado, estiloSelecionado;
+         estiloSelecionado=document.getElementById("estilo");
+         indiceEstiloSelecionado=estiloSelecionado.selectedIndex;
+         e=estiloSelecionado.options[indiceEstiloSelecionado].value;
+
+     /*pegando a opiniao*/
+      var o;
+       o=document.getElementById("opiniao").value;
+
+
+
+    /* exibindo os dados que foram digitados /selecionados */
+    document.write("Nome: " + n);
+	  document.write("<br>Genêro: " + l);
+	  document.write("<br>Canal: " + c);
+	  document.write("<br>Estilo: " + e);
+	  document.write("<br>Opinião: " + o);
+
+
+      
+    // Retorna verdadeiro caso todos os testes sejam satisfatórios 							
+    return	true; 
+  }
+  </script>
+
+
+  </head>
+  <body>
+      
+    <div class="container">
+    <h1>Formulário de Filmes</h1>
+    <form name="frmCadastro" onSubmit="return confirmarCadastro()" method="post">
+      
+        <div class="form-group">
+          <label for="exampleFormControlInput1">Nome</label>
+          <input type="text" class="form-control" id="nome" name="nome">
+        </div>
+
+
+        <div class="form-group">
+            <label for="exampleFormControlInput1">Escolha alguns gêneros de filmes de acordo com o seu gosto</label>
+
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="Comédia" name="genero">
+                <label class="form-check-label" for="defaultCheck1">
+                  Comédia
+                </label>
+              </div>
+          
+  
+
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="Terror" name="genero">
+            <label class="form-check-label" for="defaultCheck1">
+              Terror
+            </label>
+          </div>
+
+
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="Ficção Cientifica" name="genero">
+            <label class="form-check-label" for="defaultCheck1">
+              Ficção Cientifica
+            </label>
+          </div>
+
+
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="Romance" name="genero">
+            <label class="form-check-label" for="defaultCheck1">
+              Romance
+            </label>
+          </div>
+
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="Drama" name="genero">
+            <label class="form-check-label" for="defaultCheck1">
+              Drama
+            </label>
+          </div>
+
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="Ação" name="genero">
+            <label class="form-check-label" for="defaultCheck1">
+              Ação
+            </label>
+          </div>
+
+    
+        </div>
+
+
+        <div class="form-group">
+            <label for="exampleFormControlInput1">Qual desses canais de streaming você mais assiste?</label>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="canal" id="canal1" value="Netflix">
+                <label class="form-check-label" for="exampleRadios1">
+                  Netflix
+                </label>
+              </div>
+
+
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="canal" id="canal2" value="Amazon Prime">
+                <label class="form-check-label" for="exampleRadios1">
+                  Amazon Prime
+                </label>
+              </div>
+
+
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="canal" id="canal3" value="Disney+">
+                <label class="form-check-label" for="exampleRadios1">
+                  Disney+
+                </label>
+              </div>
+
+
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="canal" id="canal4" value="GloboPlay">
+                <label class="form-check-label" for="exampleRadios1">
+                  GloboPlay
+                </label>
+              </div>
+
+
+
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="canal" id="canal5" value="Outro">
+                <label class="form-check-label" for="exampleRadios1">
+                  Outro
+                </label>
+              </div>
+
+            </div>
+
+        <div class="form-group">
+          <label for="exampleFormControlSelect1">Qual desses estilos de filme você prefere?</label>
+          <select class="form-control" id="estilo" name="estilo">
+            <option value="">--Estilos--</option>
+            <option value="Suspense">Suspense</option>
+            <option value="Morte">Morte</option>
+            <option value="Super Herói">Super Herói</option>
+            <option value="Superação">Superação</option>
+            <option value="Cliche">Cliche</option>
+          </select>
+        </div>
+       
+        <div class="form-group">
+          <label for="exampleFormControlTextarea1">Deixe sua opinião e sugestões</label>
+          <textarea class="form-control" id="opiniao" name="opiniao" rows="3"></textarea>
+        </div>
+
+        <input type="submit"  class="btn btn-success" value="Enviar">
+        <input class="btn btn-danger" type="reset" value="Limpar">
+        </div>
+        
+      </form>
+      
+
+    <!-- JavaScript (Opcional) -->
+    <!-- jQuery primeiro, depois Popper.js, depois Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+  </body>
+</html>
